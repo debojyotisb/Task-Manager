@@ -1,24 +1,42 @@
-import React from "react";
-import {v4 as uuidv4} from "uuid";
+import React, { useState } from "react";
+import TaskList  from "./TaskList";
 
-export default function ListOfTask ({ input, setInput, task, setTask }) {
 
- 
+const initialTask = [
+    {id: 1, text: "walk with Dog", completed: false},
+    {id: 2, text: "walk with Cat", completed: false},
+    {id: 3, text: "walk with Cow", completed: false},
+    {id: 4, text: "walk with Lady", completed: true},
+
+]
+
+export default function ListOfTask () {
+    const [tasks, setTasks] = useState("");
+    const [items, setItems] = useState([]);
+
 
     const handleChange = (event) => {
-        setInput(event.terget.value);
+        setTasks(event.target.value);
     }
+    // console.log(handleChange);
 
-    const onFormSubmit = (event) => {
-        event.preventDefault();
-        setTask([ ...task, {id: uuidv4(), title: input, completed: false }]);
-        setInput("");
+    const taskList = () => {
+        setItems((oldItems) => {
+            return [...oldItems, tasks];
+        });
+        setTasks("");
     };
+    // console.log(taskList);
 
-    return (
-       <form onSubmit={onFormSubmit}>
-         <input type="text" placeholder="Task Name" value={input} required onChange={handleChange}></input>
-            <button  type="submit"> Add task</button>
-       </form>
+return (
+    <div>
+        <input type="text" placeholder="Add task" value={tasks} onChange={handleChange}/>
+        <button type="submit" onClick={taskList}>Add task</button>
+        <ul>
+            {items.map((itemval) => {
+               return <TaskList text={itemval} />
+            })}
+        </ul>
+    </div>
     )
 }
