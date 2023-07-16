@@ -1,6 +1,7 @@
 
 import ListOfTask from "./ListOfTask";
 import Header from "./Header";
+import './App.css';
 
 
 const App = () => {
@@ -8,10 +9,9 @@ const App = () => {
   return (
     <>
 
-    <div>
+    <div className="App">
     <Header />
-    </div>
-    <div>
+    <br />
     <ListOfTask />
     </div>
 

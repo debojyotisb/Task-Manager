@@ -1,19 +1,20 @@
 
 import React from "react";
+import './App.css';
+
 const TaskList = (props) => {
     
     return (
-    <div>
-        <li> {props.text} </li>
+    <div className="li">
+        <li > {props.text} </li>
 
         <button onClick={() => {
-            props.id(props.text)
-        }}>Edit</button>
+            props.onEdit(props.id)
+        }} className="button">Edit</button>
 
         <button onClick={() => {
             props.onSelect(props.id)
-        }}
-        >Delete
+        }} className="button">Delete
         </button>
     </div>
         ) 
